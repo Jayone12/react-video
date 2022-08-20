@@ -5,7 +5,9 @@ export const getVideos = (req, res) => {
       title: "first movie",
       description: "hello world",
       hashtags: ["#moive", "hello", "world", "funny"],
-      mete: {
+      createAt: 1660969408970,
+      thumbnail: "",
+      meta: {
         view: 15,
         like: 42,
         hate: 12,
@@ -34,7 +36,9 @@ export const getVideos = (req, res) => {
       title: "second movie",
       description: "hello world",
       hashtags: ["#moive", "hello", "world", "funny"],
-      mete: {
+      createAt: 1660969408970,
+      thumbnail: "",
+      meta: {
         view: 15,
         like: 42,
         hate: 12,
@@ -63,7 +67,9 @@ export const getVideos = (req, res) => {
       title: "third movie",
       description: "hello world",
       hashtags: ["#moive", "hello", "world", "funny"],
-      mete: {
+      createAt: 1660969408970,
+      thumbnail: "",
+      meta: {
         view: 15,
         like: 42,
         hate: 12,
