@@ -58,7 +58,7 @@ body {
  font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.2;
   background-color: black;
-  font-size: 0.0521vw;
+  color:white;
 }
 a {
   text-decoration:none;
@@ -69,6 +69,7 @@ a {
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <>
     <GlobalStyles />
