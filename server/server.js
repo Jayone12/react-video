@@ -1,4 +1,5 @@
 import express from "express";
+import { corsSet } from "./middleware";
 import videoRouter from "./routers/videoRouters";
 
 const app = express();
