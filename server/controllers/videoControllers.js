@@ -1,4 +1,4 @@
-export const getVideos = () => {
+export const getVideos = (req, res) => {
   const videos = [
     {
       id: 0,
