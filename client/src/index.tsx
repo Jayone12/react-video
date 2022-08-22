@@ -79,7 +79,7 @@ a {
       background-color: white;
     }
   }
-  .submit-btn {
+  button {
     padding: 10px 0;
     background-color: tomato;
     color: #fff;
