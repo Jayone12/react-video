@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,8 +15,6 @@ const Title = styled.h2`
   font-size: 24px;
 `;
 
-const SocialLogin = styled.div``;
-
 const KakaoLogin = styled.button`
   width: 100%;
   padding: 10px 0;
@@ -30,17 +29,41 @@ const JoinWrapper = styled.div`
 `;
 
 function Login() {
+  const onLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const email = event.currentTarget.email.value;
+    const password = event.currentTarget.password.value;
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+  };
   return (
     <LoginContainer>
       <Title>로그인 하기</Title>
-      <form className="user-form">
-        <input type="email" placeholder="이메일을 입력하세요." required />
-        <input type="password" placeholder="비밀번호를 입력하세요" required />
+      <form className="user-form" onSubmit={onLogin}>
+        <input
+          name="email"
+          type="email"
+          placeholder="이메일을 입력하세요."
+          required
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+          required
+        />
         <button className="submit-btn">로그인</button>
       </form>
-      <SocialLogin>
-        <KakaoLogin>카카오 로그인</KakaoLogin>
-      </SocialLogin>
+      <KakaoLogin>카카오 로그인</KakaoLogin>
       <hr />
       <JoinWrapper>
         <p>
