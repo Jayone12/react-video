@@ -73,7 +73,9 @@ a {
     background-color: #000;
     border: 1px solid #999;
     margin-bottom: 10px;
+    color:gray;
     &:focus {
+      color: black;
       background-color: white;
     }
   }
