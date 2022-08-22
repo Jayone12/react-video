@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./components/Header";
 import Home from "./routers/Home";
+import Join from "./routers/Join";
 import Login from "./routers/Login";
 
 const Wrapper = styled.div`
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
         </Routes>
       </BrowserRouter>
     </Wrapper>
