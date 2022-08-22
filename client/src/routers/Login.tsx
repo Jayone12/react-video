@@ -61,7 +61,7 @@ function Login() {
           placeholder="비밀번호를 입력하세요"
           required
         />
-        <button className="submit-btn">로그인</button>
+        <button>로그인</button>
       </form>
       <KakaoLogin>카카오 로그인</KakaoLogin>
       <hr />
