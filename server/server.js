@@ -1,11 +1,14 @@
 import express from "express";
-import { corsSet } from "./middleware";
+import cors from "cors";
+import rootRouter from "./routers/rootRouters";
 import videoRouter from "./routers/videoRouters";
 
 const app = express();
 const PORT = 4000;
+const corsConfig = { origin: "http://localhost:3000", credentials: true };
 
-app.use(corsSet);
+app.use(cors(corsConfig));
+app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 
 const handelServer = () => {
