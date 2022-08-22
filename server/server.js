@@ -11,6 +11,8 @@ const corsConfig = { origin: "http://localhost:3000", credentials: true };
 
 app.use(cors(corsConfig));
 app.use(logger);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 
