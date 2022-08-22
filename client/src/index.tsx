@@ -64,6 +64,28 @@ a {
   text-decoration:none;
   color:inherit;
 }
+.user-form {
+  display: flex;
+  flex-direction: column;
+  input {
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: #000;
+    border: 1px solid #999;
+    margin-bottom: 10px;
+    color:gray;
+    &:focus {
+      color: black;
+      background-color: white;
+    }
+  }
+  button {
+    padding: 10px 0;
+    background-color: tomato;
+    color: #fff;
+    border: none;
+  }
+}
 `;
 
 const root = ReactDOM.createRoot(

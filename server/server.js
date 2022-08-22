@@ -1,11 +1,19 @@
 import express from "express";
-import { corsSet } from "./middleware";
+import cors from "cors";
+import morgan from "morgan";
+import rootRouter from "./routers/rootRouters";
 import videoRouter from "./routers/videoRouters";
 
 const app = express();
 const PORT = 4000;
+const logger = morgan("dev");
+const corsConfig = { origin: "http://localhost:3000", credentials: true };
 
-app.use(corsSet);
+app.use(cors(corsConfig));
+app.use(logger);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 
 const handelServer = () => {

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
@@ -16,10 +17,16 @@ const MenuContainer = styled.ul`
 function Header() {
   return (
     <HeaderContainer>
-      <h1>Logo</h1>
+      <h1>
+        <Link to="/">Logo</Link>
+      </h1>
       <MenuContainer>
-        <li>Home</li>
-        <li>Login</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
         <li>Join</li>
       </MenuContainer>
     </HeaderContainer>
