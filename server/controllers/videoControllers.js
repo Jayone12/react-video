@@ -96,3 +96,7 @@ export const getVideos = (req, res) => {
   ];
   res.json(videos);
 };
+
+export const postUpload = (req, res) => {
+  console.log(req.body);
+};
