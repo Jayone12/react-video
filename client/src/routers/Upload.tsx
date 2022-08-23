@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
@@ -18,12 +19,33 @@ const Label = styled.label`
 `;
 
 function Upload() {
+  const videoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const videoTitle = event.currentTarget.videoTitle.value;
+    const description = event.currentTarget.description.value;
+    const hashtags = event.currentTarget.hashtags.value;
+
+    fetch("http://localhost:4000/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: videoTitle,
+        description,
+        hashtags: hashtags
+          .split(",")
+          .map((tag: string) => (tag.startsWith("#") ? tag : `#${tag}`)),
+      }),
+    });
+  };
+
   return (
     <FormContainer>
       <Title>비디오 등록</Title>
-      <form className="user-form">
+      <form className="user-form" onSubmit={videoSubmit}>
         <input
-          name="title"
+          name="videoTitle"
           type="text"
           placeholder="제목을 입력하세요."
           required
@@ -37,7 +59,7 @@ function Upload() {
         <input
           name="hashtags"
           type="text"
-          placeholder="해시태그를 입력하세요. "
+          placeholder="해시태그를 ,로 입력하세요. "
           required
         />
         <Label htmlFor="videoFile">비디오 파일 등록</Label>
