@@ -27,7 +27,12 @@ function Header() {
         <li>
           <Link to="/login">Login</Link>
         </li>
-        <li>Join</li>
+        <li>
+          <Link to="/join">Join</Link>
+        </li>
+        <li>
+          <Link to="/upload">Upload</Link>
+        </li>
       </MenuContainer>
     </HeaderContainer>
   );
