@@ -21,29 +21,36 @@ const Label = styled.label`
 function Upload() {
   const videoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const videoTitle = event.currentTarget.videoTitle.value;
-    const description = event.currentTarget.description.value;
-    const hashtags = event.currentTarget.hashtags.value;
+    const formData = new FormData();
+    formData.append("videoFile", event.currentTarget.videoFile.files[0]);
+    formData.append("thumbnail", event.currentTarget.thumbnail.files[0]);
+    formData.append("title", event.currentTarget.videoTitle.value);
+    formData.append("description", event.currentTarget.description.value);
+    formData.append(
+      "hashtags",
+      event.currentTarget.hashtags.value
+        .split(",")
+        .map((tag: string) => (tag.startsWith("#") ? tag : `#${tag}`))
+    );
 
     fetch("http://localhost:4000/upload", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: videoTitle,
-        description,
-        hashtags: hashtags
-          .split(",")
-          .map((tag: string) => (tag.startsWith("#") ? tag : `#${tag}`)),
-      }),
+      body: formData,
+    }).then((response) => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      }
     });
   };
 
   return (
     <FormContainer>
       <Title>비디오 등록</Title>
-      <form className="user-form" onSubmit={videoSubmit}>
+      <form
+        className="user-form"
+        onSubmit={videoSubmit}
+        encType="multipart/form-data"
+      >
         <input
           name="videoTitle"
           type="text"
