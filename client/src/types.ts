@@ -11,10 +11,10 @@ interface IVideoComments {
 }
 
 export interface IVideos {
-  id: number;
+  _id: number;
   title: string;
   description: string;
-  createAt: number;
+  createdAt: number;
   thumbnail: string;
   hashtags: string[];
   meta: IVideoMeta;
