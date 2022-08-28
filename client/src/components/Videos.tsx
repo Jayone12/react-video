@@ -27,46 +27,24 @@ const VideoCreateTime = styled.span``;
 
 function Videos() {
   const [videos, setVideos] = useState<IVideos[]>([]);
-  console.log(videos);
 
   useEffect(() => {
     fetch("http://localhost:4000/videos")
       .then((response) => response.json())
       .then((videos) => setVideos(videos));
   }, []);
+  console.log(videos);
   return (
     <VideoListContainer>
       {videos?.map((video) => (
-        <li key={video.id}>
+        <li key={video._id}>
           <VideoThumbnail></VideoThumbnail>
           <VideoTitle>{video.title}</VideoTitle>
           <VideoUserInfo>
             <VideoOwner>{video.owner}</VideoOwner>
             <VideoView>조회수: {video.meta.view}</VideoView>
           </VideoUserInfo>
-          <VideoCreateTime>{diffTime(video.createAt)}</VideoCreateTime>
-        </li>
-      ))}
-      {videos?.map((video) => (
-        <li key={video.id}>
-          <VideoThumbnail></VideoThumbnail>
-          <VideoTitle>{video.title}</VideoTitle>
-          <VideoUserInfo>
-            <VideoOwner>{video.owner}</VideoOwner>
-            <VideoView>조회수: {video.meta.view}</VideoView>
-          </VideoUserInfo>
-          <VideoCreateTime>{diffTime(video.createAt)}</VideoCreateTime>
-        </li>
-      ))}
-      {videos?.map((video) => (
-        <li key={video.id}>
-          <VideoThumbnail></VideoThumbnail>
-          <VideoTitle>{video.title}</VideoTitle>
-          <VideoUserInfo>
-            <VideoOwner>{video.owner}</VideoOwner>
-            <VideoView>조회수: {video.meta.view}</VideoView>
-          </VideoUserInfo>
-          <VideoCreateTime>{diffTime(video.createAt)}</VideoCreateTime>
+          <VideoCreateTime>{diffTime(video.createdAt)}</VideoCreateTime>
         </li>
       ))}
     </VideoListContainer>
