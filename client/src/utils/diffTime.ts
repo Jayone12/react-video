@@ -1,9 +1,10 @@
 const diffTime = (timestamp: number) => {
   // 현재 시간
   const currentTime = Date.now();
+  const createTime = new Date(timestamp).getTime();
 
   // 현재 시간에과 생성 시간의 차이
-  const diff = Math.floor((currentTime - timestamp) / 1000 / 60);
+  const diff = Math.floor((currentTime - createTime) / 1000 / 60);
 
   if (diff < 1) return `a few seconds`;
   if (diff < 60) {
