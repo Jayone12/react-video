@@ -9,6 +9,10 @@ const JoinContainer = styled.div`
   border-radius: 10px;
 `;
 
+const Label = styled.label`
+  padding: 10px 0;
+`;
+
 const KakaoLogin = styled.button`
   width: 100%;
   padding: 10px 0;
@@ -22,30 +26,34 @@ function Join() {
   const [errorMessage, setErrormessage] = useState("");
   const onJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const email = event.currentTarget.email.value;
-    const userName = event.currentTarget.username.value;
     const password = event.currentTarget.password.value;
     const passwordConfirm = event.currentTarget.passwordConfirm.value;
+    const formData = new FormData();
+    formData.append("email", event.currentTarget.email.value);
+    formData.append("username", event.currentTarget.username.value);
+    formData.append("password", password);
+    formData.append("passwordConfirm", passwordConfirm);
+    formData.append("profileImg", event.currentTarget.profileImg.files[0]);
     if (password !== passwordConfirm) {
       return setErrormessage("비밀번호가 틀렸습니다.");
     }
     fetch("http://localhost:4000/join", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({
-        email,
-        userName,
-        password,
-        passwordConfirm,
-      }),
+      body: formData,
+      redirect: "follow",
+    }).then((response) => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      }
     });
   };
   return (
     <JoinContainer>
-      <form className="user-form" onSubmit={onJoin}>
+      <form
+        className="user-form"
+        onSubmit={onJoin}
+        encType="multipart/form-data"
+      >
         <input
           name="email"
           type="email"
@@ -71,6 +79,8 @@ function Join() {
           required
         />
         <span className="error-message">{errorMessage}</span>
+        <Label htmlFor="profileImg">프로필 이미지</Label>
+        <input type="file" accept="image/*" name="profileImg" id="profileImg" />
         <button>회원 가입</button>
       </form>
       <KakaoLogin>카카오 계정으로 회원가입</KakaoLogin>
